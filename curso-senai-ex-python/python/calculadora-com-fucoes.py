@@ -6,41 +6,49 @@ os.system("cls")
 #importar as funções 
 import funcoes_da_calculadora as funcoes 
 
-print ("calculadora com funções ")
+resposta = "sim "
 
-numero01 = float(input ("digite o primeiro número: "))
-numero02 = float(input ("digite o segundo número: "))
+while resposta == "sim ":
 
-#mostrando as opções 
-print ("==============================")
-print ('selecione uma opção abaixo ')
-print ("[1] - soma ")
-print ("[2] - subtração ")
-print ('[3] - divisão ')
-print ("[4] - multiplicação")
-print ("[5] - resto da divisão")
+    os.system("cls")
+    print ("calculadora com funções ")
 
-opcao = input ("escolha uma  opção: ")
+    numero01 = float(input ("digite o primeiro número: "))
+    numero02 = float(input ("digite o segundo número: "))
 
-#verificar a opção escolhida 
-if opcao == "1":
-    print(f"a soma: {funcoes.somar_com_retorno(numero01,numero02)}")
+    #mostrando as opções 
+    print ("==============================")
+    print ('selecione uma opção abaixo ')
+    print ("[1] - soma ")
+    print ("[2] - subtração ")
+    print ('[3] - divisão ')
+    print ("[4] - multiplicação")
+    print ("[5] - resto da divisão")
 
-elif opcao == "2":
-    print(f"a subtração é : {funcoes.subtrair_com_retorno(numero01, numero02)}")
+    opcao = input ("escolha uma  opção: ")
 
-elif opcao == "3":
-    funcoes.dividir(numero01, numero02)
+    #verificar a opção escolhida 
+    if opcao == "1":
+        print(f"a soma: {funcoes.somar_com_retorno(numero01,numero02)}")
 
-elif opcao == "4":
-    funcoes.multiplicar(numero01, numero02)
+    elif opcao == "2":
+        print(f"a subtração é : {funcoes.subtrair_com_retorno(numero01, numero02)}")
 
-elif opcao == "5":
-    funcoes.calcular_resto_divisao(numero01, numero02)
+    elif opcao == "3":
+        funcoes.dividir(numero01, numero02)
 
-else:
-    funcoes.imprimir_msg_erro()
+    elif opcao == "4":
+        funcoes.multiplicar(numero01, numero02)
 
+    elif opcao == "5":
+        funcoes.calcular_resto_divisao(numero01, numero02)
+
+    else:
+        funcoes.imprimir_msg_erro()
+
+    resposta = input ("deseja executar novamanete? (SIM ou NÃO ").lower()
+
+print ("progrma encerrado com sucesso!")
 
 
 
