@@ -6,9 +6,9 @@ os.system("cls")
 #importar as funções 
 import funcoes_da_calculadora as funcoes 
 
-resposta = "sim "
+resposta = "sim"
 
-while resposta == "sim ":
+while resposta == "sim":
 
     os.system("cls")
     print ("calculadora com funções ")
@@ -24,6 +24,7 @@ while resposta == "sim ":
     print ('[3] - divisão ')
     print ("[4] - multiplicação")
     print ("[5] - resto da divisão")
+    
 
     opcao = input ("escolha uma  opção: ")
 
@@ -46,7 +47,7 @@ while resposta == "sim ":
     else:
         funcoes.imprimir_msg_erro()
 
-    resposta = input ("deseja executar novamanete? (SIM ou NÃO ").lower()
+    resposta = input ("deseja executar novamanete? (SIM ou NÃO) ").lower()
 
 print ("progrma encerrado com sucesso!")
 
