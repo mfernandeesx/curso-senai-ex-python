@@ -55,31 +55,35 @@ def voltar_ao_menu_principal():
 
 #função que cadrastra movo cliente 
 def cadastrar_novo_cliente():
-    limpar_tela()
-    print ('=== cadrastro de novo cliente ===\n ')
+    try: 
+        limpar_tela()
+        print ('=== CADRASTRO DE NOVO CLIENTE ===\n ')
 
-    nome = input("digite o nome do cliente: ")
-    idade = input ('digite a idade do cliente: ')
-    email = input ("digite o e-mail do cliente: ")
-    celular = input ("digite o celular do cliente: ")
+        nome = input("digite o nome do cliente: ")
+        idade = int (input ('digite a idade do cliente: '))
+        email = input ("digite o e-mail do cliente: ")
+        celular = input ("digite o celular do cliente: ")
 
-    dados_clientes = {
-        'nome': nome,
-        'idade': idade,
-        'email': email,
-        'celular': celular 
-    }
+        dados_clientes = {
+            'nome': nome,
+            'idade': idade,
+            'email': email,
+            'celular': celular 
+        }
 
-    # ADICIONAR O DICIONÁRIO E NÃO O NOME
-    lista_de_clientes.append(dados_clientes)
+        # ADICIONAR O DICIONÁRIO E NÃO O NOME
+        lista_de_clientes.append(dados_clientes)
 
-    print (f"\n o cliente {nome} foi cadrastrado com sucesso ")
-    voltar_ao_menu_principal()
+        print (f"\n o cliente {nome} foi cadrastrado com sucesso ")
+    except:
+        print ("a idade deve ser um número ")
+    finally:
+        voltar_ao_menu_principal()
 
 #função que lista todos os clientes cadrastrados 
 def listar_cliente_cadrastrar():
     limpar_tela()
-    print ("=== lista de clientes cadastrado ===\n")
+    print ("=== LISTA DE CLIENTE CADASTRADO ===\n")
 
     for cliente in lista_de_clientes:
         print(f"nome: {cliente['nome']} | idade: {cliente['idade']} | e-mail: {cliente['email']} | celular: {cliente['celular']}")
@@ -91,7 +95,7 @@ def listar_cliente_cadrastrar():
 def excluir_cliente():
     #chamando a função que limpa a tela 
     limpar_tela()
-    print ("=== remover cliente ===\n")
+    print ("=== REMOVER CLIENTE ===\n")
 
 
     #indice= 0
@@ -100,17 +104,57 @@ def excluir_cliente():
     for indice, cliente in enumerate(lista_de_clientes):
         print(f"indice {indice} | nome: {cliente['nome']} | idade: {cliente['idade']} | e-mail: {cliente['email']} | celular: {cliente['celular']}")
     
-    #solicitar ao usuario o indice para remover
-    indice = int (input ("\n digite o indice do cliente que deseja remover: "))
+    try:
+        #solicitar ao usuario o indice para remover
+        indice = int (input ("\n digite o indice do cliente que deseja remover: "))
 
-    #excluir o cliente 
-    cliente_removido = lista_de_clientes.pop(indice)
+        if indice >=0 and indice <len (lista_de_clientes):
+            #excluir o cliente 
+            cliente_removido = lista_de_clientes.pop(indice)
 
-    print (f"\n cliente {cliente_removido ['nome']} removido com sucesso ")
+            print (f"\n cliente {cliente_removido ['nome']} removido com sucesso ")
+        else:
+            print ("indice invalido ")
+    except: 
+        print ("'digite um indice valido ")
 
+    finally: 
     #voltar ao menu principal 
     voltar_ao_menu_principal()
 
+#função para editar um funcionario 
+def editar_dados_clientes():
+    limpar_tela()
+    print ("==== EDITAR DADOS DO CLIENTE ====\n")
+
+    for indice, cliente in enumerate(lista_de_clientes):
+        print(f"indice {indice} | nome: {cliente['nome']} | idade: {cliente['idade']} | e-mail: {cliente['email']} | celular: {cliente['celular']}")
+    try:
+        indice = int (input ("\n digite o indice do cliente que deseja editar: "))
+
+        if indice >= 0 and indice < len (lista_de_clientes):
+
+            #capturar os dados do cliente selecionado 
+            dados_do_clientes = lista_de_clientes[indice]
+
+            #exibindo os dados do cliente selecionado
+            print (f"\n EDITANDO OS DADOS DO CLIENTE {dados_do_clientes["nome"]}")
+
+            #solicitando os novos dados 
+            novo_nome = input (f"digite o novo nome: (atual -{dados_do_clientes["nome"]})")
+            nova_idade = input (f"digite a nova idade: (atual -{dados_do_clientes["idade"]})") 
+            novo_email = input (f"digite o novo email:(atual -{dados_do_clientes["email"]})")
+            novo_celular = input (f"digite o novo celular(atual -{dados_do_clientes["celular"]}) ")
+            # editar 
+            dados_do_clientes["nome"] = novo_nome
+            dados_do_clientes["idade"] = nova_idade
+            dados_do_clientes["email"] = novo_email
+            dados_do_clientes["celular"] = novo_celular
+            print ("\n dados atualizados com sucesso !")
+    except: 
+        print ("idade ou indice, devem ser validos ")
+    finally: 
+        voltar_ao_menu_principal()
 #função principal do meu programa 
 def main():
     limpar_tela()
@@ -125,9 +169,18 @@ def main():
     
     elif opcao == 2:
         listar_cliente_cadrastrar()
+
+    elif opcao == 3:
+        editar_dados_clientes()
+
     elif opcao == 4:
         #abrir a exclusão de um cliente 
         excluir_cliente()
+
+    elif opcao== 5:
+        input("pressione <ENTER> para encerrar o programa......")
+        exit()
+
     else:
         print ("opção invalida! tente novamente ")
         voltar_ao_menu_principal()
